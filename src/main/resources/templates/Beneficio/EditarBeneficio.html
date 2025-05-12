@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Editar Beneficio</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+  </head>
+  <body
+    class="d-flex justify-content-center align-items-center vh-100 bg-light"
+  >
+    <div class="card shadow p-4" style="width: 400px">
+      <h4 class="mb-3 text-center">Editar Beneficio</h4>
+      <form
+        th:action="@{/Beneficio/EditadoBeneficio/{id}(id=${beneficio.idBeneficio})}"
+        th:object="${beneficio}"
+        method="post"
+      >
+        <div class="mb-3">
+          <label for="gnombre" class="form-label">Nombre</label>
+          <input
+            type="text"
+            class="form-control"
+            id="gnombre"
+            name="gnombre"
+            th:field="*{benDescripcion}"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label for="gmonto" class="form-label">Monto</label>
+          <input
+            type="number"
+            step="0.01"
+            class="form-control"
+            id="gmonto"
+            name="gmonto"
+            th:field="*{benMonto}"
+            required
+          />
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Mes Aplicable:</label>
+          <select th:field="*{MesBeneficio}">
+            <option
+              th:each="mes : ${meses}"
+              th:value="${mes}"
+              th:text="${#strings.arrayJoin({'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'}, ',').split(',')[mes.ordinal()]}"
+            ></option>
+          </select>
+        </div>
+        <div class="d-flex justify-content-between">
+          <a th:href="@{/Beneficio/ListarBeneficios}" class="btn btn-secondary"
+            >Volver</a
+          >
+          <button type="submit" class="btn btn-primary">Guardar</button>
+        </div>
+      </form>
+    </div>
+  </body>
+</html>

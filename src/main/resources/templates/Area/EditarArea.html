@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Modificar Área</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="d-flex justify-content-center align-items-center vh-100 bg-light">
+
+<div class="card shadow p-4" style="width: 400px;">
+    <h4 class="mb-3 text-center">Modificar Área</h4>
+    <form th:action="@{/Area/EditadoArea/{id}(id=${area.idArea})}"  th:object="${area}" method="POST">
+        <!-- ID oculto -->
+        <input type="hidden" name="id_area" value="1">
+
+        <div class="mb-3">
+            <label for="anombre" class="form-label">Nombre del Área</label>
+            <input type="text" class="form-control" id="anombre" name="anombre" value="Administración" th:field="*{ANombre}" oninput="this.value = this.value.replace(/[0-9]/g, '')" required>
+        </div>
+        <div class="mb-3">
+            <label for="asalario" class="form-label">Salario</label>
+            <input type="number" step="0.01" class="form-control" id="asalario" name="asalario" value="15000.00" th:field="*{ASalario}" oninput="this.value = this.value.replace(/[^0-9]/g, '')" required>
+        </div>
+        <div class="d-flex justify-content-between">
+            <a th:href="@{/Area/ListarArea}" class="btn btn-secondary">Cancelar</a>
+            <button type="submit" class="btn btn-primary">Actualizar</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

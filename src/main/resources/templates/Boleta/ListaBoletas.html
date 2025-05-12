@@ -1,0 +1,51 @@
+<main th:fragment="content-page">
+  <div class="container py-5">
+    <h2 class="text-center mb-4">Lista de Boletas de Pago</h2>
+
+    <div class="table-container">
+      <table class="table table-striped table-hover align-middle">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Empleado</th>
+            <th>Área</th>
+            <th>Banco</th>
+            <th>Salario Neto</th>
+            <th>Emisión</th>
+            <th>Descargar</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr th:each="boleta : ${boletas}">
+            <td th:text="${boleta.bolContrato.contempleado.empCodigo}">
+              Código
+            </td>
+            <td
+              th:text="${boleta.bolContrato.contempleado.empNombre + ' ' + boleta.bolContrato.contempleado.empApePaterno + ' ' + boleta.bolContrato.contempleado.empApeMaterno}"
+            >
+              Empleado
+            </td>
+            <td th:text="${boleta.bolContrato.contarea.ANombre}">Área</td>
+            <td th:text="${boleta.bolContrato.contempleado.empbanco.banNombre}">
+              Banco
+            </td>
+            <td th:text="${boleta.bolMontoNetoBole}">Salario Neto</td>
+            <td
+              th:text="${#dates.format(boleta.bolFecEmisionBole, 'dd/MM/yyyy')}"
+            >
+              Fecha
+            </td>
+            <td>
+              <a
+                th:href="@{/boletas/pdf(idBoleta=${boleta.idBoleta})}"
+                class="btn-download"
+              >
+                <i class="bi bi-download"></i> Descargar
+              </a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>

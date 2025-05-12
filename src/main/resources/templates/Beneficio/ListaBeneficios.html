@@ -1,0 +1,52 @@
+<main th:fragment="content-page">
+  <div class="container py-5">
+    <h2 class="section-title text-center"><i></i>Lista de Beneficios</h2>
+    <div class="d-flex justify-content-between mb-3">
+      <label for="searchBox"></label
+      ><input
+        type="text"
+        id="searchBox"
+        class="form-control w-50"
+        placeholder="Buscar por nombre..."
+      />
+      <a th:href="@{/Beneficio/CrearBeneficio}" class="btn btn-add shadow-sm">
+        <i class="bi bi-person-plus-fill"></i> Nuevo Beneficio
+      </a>
+    </div>
+
+    <div class="card p-4">
+      <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle mb-0">
+          <thead>
+            <tr>
+              <th><i class="bi bi-star-fill"></i> NOMBRE</th>
+              <th><i class="bi bi-cash-coin"></i> MONTO</th>
+              <th><i class="bi bi-monthly-revenue"></i> MES</th>
+              <th><i class="bi bi-gear"></i> ACCIONES</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="empl : ${beneficios}">
+              <td th:text="${empl.benDescripcion}"></td>
+              <td th:text="${empl.benMonto}"></td>
+              <td
+                th:text="${empl.MesBeneficio != null ? 
+                  #strings.arrayJoin({'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 
+                  'Noviembre', 'Diciembre'}, ',')
+                  .split(',')[empl.MesBeneficio.ordinal()] : 'Mes no disponible'}"
+              ></td>
+              <td>
+                <a
+                  th:href="@{/Beneficio/EditarBeneficio/{id}(id=${empl.idBeneficio})}"
+                  class="btn btn-sm btn-edit-custom btn-action"
+                >
+                  <i class="bi bi-pencil-square"></i> Editar
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>

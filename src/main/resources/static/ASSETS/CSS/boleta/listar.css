@@ -1,0 +1,33 @@
+body {
+    background: #f8f9fa;
+    padding: 20px;
+}
+.table-container {
+    background: #fff;
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+}
+.table th {
+    background-color: #343a40;
+    color: #ffffff;
+    font-size: 1rem;
+    text-align: center;
+}
+.table td {
+    text-align: center;
+    font-size: 1rem;
+    color: #495057;
+}
+.btn-download {
+    background-color: #28a745;
+    color: white;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background 0.3s ease-in-out;
+}
+.btn-download:hover {
+    background-color: #218838;
+}

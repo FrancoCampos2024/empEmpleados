@@ -1,0 +1,35 @@
+/* Estilos del contenido principal */
+.contenido {
+    flex: 1;
+    padding: 3rem;
+}
+
+.contenido h2 {
+    font-weight: bold;
+    color: #343a40;
+}
+
+.summary-container {
+    background-color: #ffffff;
+    padding: 1.5rem;
+    border-radius: 0.5rem;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.summary-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.summary-container ul li {
+    padding: 0.5rem;
+    font-size: 1.1rem;
+    color: #495057;
+}
+
+.summary-container ul li::before {
+    content: "✔ ";
+    color: #198754;
+    font-weight: bold;
+}
+
