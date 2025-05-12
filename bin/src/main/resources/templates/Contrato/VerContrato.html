@@ -1,0 +1,74 @@
+<main th:fragment="content-page">
+  <div class="container py-5">
+    <div th:if="${session.usuario}">
+      <a th:href="@{/Contrato/ListarContratos}" class="btn btn-secondary shadow-sm">
+        <i class="bi bi-arrow-left-circle"></i> Volver al inicio
+      </a>
+    </div>
+    <h2 class="section-title text-center mb-5">
+      <i class="bi bi-person-badge icon-bg"></i>Detalle del Contrato
+    </h2>
+
+    <!-- Row centrado -->
+    <div class="row g-4 justify-content-center">
+      <div class="col-12 col-md-5 col-lg-4">
+        <div class="card h-100">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <i class="bi bi-person"></i> Nombre:
+              <strong th:text="${contrato.contempleado.empNombre}"></strong>
+            </li>
+            <li class="list-group-item">
+              <i class="bi bi-person-vcard"></i> Apellido Paterno:
+              <strong th:text="${contrato.contempleado.empApePaterno}"></strong>
+            </li>
+            <li class="list-group-item">
+              <i class="bi bi-person-vcard"></i> Apellido Materno:
+              <strong th:text="${contrato.contempleado.empApeMaterno}"></strong>
+            </li>
+            <li class="list-group-item">
+              <i class="bi bi-credit-card-2-front"></i> DNI:
+              <strong th:text="${contrato.contempleado.empDni}"></strong>
+            </li>
+            <li class="list-group-item">
+              <i class="bi bi-diagram-3"></i> Área:
+              <strong th:text="${contrato.contarea.ANombre}"></strong>
+            </li>
+            <li class="list-group-item">
+              <i class="bi bi-briefcase-fill"></i> Modalidad:
+              <strong th:text="${contrato.contmodContrato.modNombre}"></strong>
+            </li>
+            <li class="list-group-item">
+              <i class="bi bi-clock"></i> Jornada Laboral:
+              <strong th:text="${contrato.contjornada.jorTipo}"></strong>
+            </li>
+            <li class="list-group-item">
+              <i class="bi bi-calendar-event"></i> Fecha Inicio:
+              <strong th:text="${contrato.contFecIni}"></strong>
+            </li>
+            <li class="list-group-item">
+              <i class="bi bi-currency-dollar"></i> Salario:
+              <strong th:text="${contrato.contSalario}"></strong>
+            </li>
+            <li class="list-group-item">
+              <i class="bi bi-patch-check-fill"></i> Estado:
+              <strong
+                th:text="${contrato.contEstadoContrato == 1 ? 'Activo' : 'Finalizado'}"
+              ></strong>
+            </li>
+            <li class="list-group-item">
+              <i class="bi bi-bank"></i> Cuenta CCI:
+              <strong th:text="${contrato.contempleado.empCci}"></strong>
+            </li>
+            <li class="list-group-item">
+              <i class="bi bi-cash-stack"></i> Banco:
+              <strong
+                th:text="${contrato.contempleado.empbanco.banNombre}"
+              ></strong>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

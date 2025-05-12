@@ -115,15 +115,9 @@
         </li>
 
         <li>
-          <form
-            method="post"
-            th:action="@{/logout}"
-            style="display: flex; align-items: start"
-          >
-            <button type="submit" class="side-menu-btn">
-              <i class="bx bx-log-out icon"></i> Salir
-            </button>
-          </form>
+          <a th:href="@{/logout}" class="btn btn-danger">
+            <i class="bx bx-log-out icon"></i> Salir
+          </a>
         </li>
       </ul>
     </section>

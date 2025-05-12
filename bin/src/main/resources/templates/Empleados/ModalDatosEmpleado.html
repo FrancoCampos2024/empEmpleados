@@ -1,0 +1,121 @@
+<main th:fragment="content-page">
+  <div class="container py-5">
+    <h2 class="section-title text-center mb-5">
+      <i class="bi bi-person-badge icon-bg"></i>Detalle del Empleado
+    </h2>
+
+    <!-- Foto del empleado -->
+    <div class="text-center mb-4">
+      <img
+        th:src="${de[17]}"
+        alt="Foto del empleado"
+        class="rounded-circle border shadow-sm"
+        width="120"
+        height="120"
+      />
+    </div>
+
+    <div class="row g-4">
+      <!-- Columna 1: Datos Personales -->
+      <div class="col-12 col-md-4">
+        <div class="card h-100">
+          <div class="card-header">
+            <i class="bi bi-person-lines-fill icon-bg"></i>Datos Personales
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <i class="bi bi-person"></i> Nombre:
+              <strong th:text="${de[0]}"></strong>
+            </li>
+            <li class="list-group-item">
+              <i class="bi bi-person"></i> Apellido Paterno:
+              <strong th:text="${de[1]}"></strong>
+            </li>
+            <li class="list-group-item">
+              <i class="bi bi-person"></i> Apellido Materno:
+              <strong th:text="${de[2]}"></strong>
+            </li>
+            <li class="list-group-item">
+              <i class="bi bi-credit-card-2-front"></i> DNI:
+              <strong th:text="${de[3]}"></strong>
+            </li>
+            <li class="list-group-item">
+              <i class="bi bi-calendar"></i> Fecha Nacimiento:
+              <strong th:text="${de[4]}"></strong>
+            </li>
+            <li class="list-group-item">
+              <i class="bi bi-hourglass-split"></i> Edad:
+              <strong th:text="${de[5]}"></strong>
+            </li>
+            <li class="list-group-item">
+              <i class="bi bi-clock-history"></i> Antigüedad:
+              <strong th:text="${de[6]}"></strong>
+            </li>
+            <li class="list-group-item">
+              <i class="bi bi-gender-ambiguous"></i> Género:
+              <strong th:text="${de[7]}"></strong>
+            </li>
+            <li class="list-group-item">
+              <i class="bi bi-patch-check"></i> Estado:
+              <strong th:text="${de[8]}"></strong>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Columna 2: Datos Laborales -->
+      <div class="col-12 col-md-4">
+        <div class="card h-100">
+          <div class="card-header">
+            <i class="bi bi-briefcase icon-bg"></i>Datos Laborales
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <i class="bi bi-diagram-3"></i> Área:
+              <strong th:text="${de[9]}"></strong>
+            </li>
+            <li class="list-group-item">
+              <i class="bi bi-people"></i> Modalidad:
+              <strong th:text="${de[10]}"></strong>
+            </li>
+            <li class="list-group-item">
+              <i class="bi bi-clock"></i> Jornada:
+              <strong th:text="${de[11]}"></strong>
+            </li>
+            <li class="list-group-item">
+              <i class="bi bi-calendar-check"></i> Fecha Inicio:
+              <strong th:text="${de[12]}"></strong>
+            </li>
+            <li class="list-group-item">
+              <i class="bi bi-calendar-x"></i> Fecha Fin:
+              <strong th:text="${de[13]}"></strong>
+            </li>
+            <li class="list-group-item">
+              <i class="bi bi-check-circle"></i> Estado Contrato:
+              <strong th:text="${de[14]}"></strong>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Columna 3: Datos Financieros -->
+      <div class="col-12 col-md-4">
+        <div class="card h-100">
+          <div class="card-header">
+            <i class="bi bi-wallet2 icon-bg"></i>Datos Financieros
+          </div>
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">
+              <i class="bi bi-bank"></i> Cuenta CCI:
+              <strong th:text="${de[15]}"></strong>
+            </li>
+            <li class="list-group-item">
+              <i class="bi bi-cash-stack"></i> Banco:
+              <strong th:text="${de[16]}"></strong>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

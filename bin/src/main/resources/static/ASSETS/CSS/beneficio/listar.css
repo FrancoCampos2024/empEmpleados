@@ -1,0 +1,57 @@
+body {
+    background: linear-gradient(135deg, #f8fafc 0%, #e0e7ef 100%);
+    min-height: 100vh;
+}
+.section-title {
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: 2rem;
+    letter-spacing: 1px;
+}
+.card {
+    border: none;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+    border-radius: 1.2rem;
+}
+.table thead th {
+    background-color: #2563eb !important;
+    color: #fff;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+.table-striped > tbody > tr:nth-of-type(odd) {
+    background-color: #f1f5f9;
+}
+.btn-add {
+    background: #2563eb;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 2rem;
+    padding-left: 1.2rem;
+    padding-right: 1.2rem;
+    transition: background 0.2s;
+}
+.btn-add:hover {
+    background: #1d4ed8;
+    color: #fff;
+}
+.btn-action {
+    border-radius: 1.2rem;
+    font-weight: 500;
+    margin-right: 0.3rem;
+}
+.btn-info-custom {
+    background: #fbbf24;
+    color: #1e293b;
+    border: none;
+}
+.btn-info-custom:hover {
+    background: #f59e42;
+    color: #fff;
+}
+
+@media (max-width: 767px) {
+    .table-responsive {
+        font-size: 0.97rem;
+    }
+}

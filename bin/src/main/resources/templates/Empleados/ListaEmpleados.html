@@ -1,0 +1,81 @@
+<main th:fragment="content-page">
+  <div class="container py-5">
+    <h2 class="section-title text-center">
+      <i class="bi bi-people-fill icon-bg"></i>Lista de Empleados
+    </h2>
+
+    <div class="d-flex justify-content-between mb-3">
+      <label for="searchBox"></label
+      ><input
+        type="text"
+        id="searchBox"
+        class="form-control w-50"
+        placeholder="Buscar por nombre..."
+      />
+      <a th:href="@{/Empleado/NuevoEmpleado}" class="btn btn-add shadow-sm">
+        <i class="bi bi-person-plus-fill"></i> Nuevo Empleado
+      </a>
+    </div>
+
+    <div class="card p-4">
+      <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle mb-0">
+          <thead>
+            <tr>
+              <th><i class="bi bi-hash"></i> CÓDIGO</th>
+              <th><i class="bi bi-person-badge"></i> NOMBRE COMPLETO</th>
+              <th><i class="bi bi-check-circle"></i> ESTADO</th>
+              <th><i class="bi bi-diagram-3"></i> ÁREA</th>
+              <th><i class="bi bi-people"></i> MODALIDAD</th>
+              <th><i class="bi bi-clock"></i> JORNADA</th>
+              <th><i class="bi bi-cash-stack"></i> SALARIO</th>
+
+              <th><i class="bi bi-gear"></i> ACCIONES</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="empl:${empleados}">
+              <td th:text="${empl[0]}"></td>
+              <td th:text="${empl[1]}"></td>
+
+              <!-- Columna de estado -->
+              <td
+                th:text="${empl[7] == '1' ? 'Activo' : 'Inactivo'}"
+                th:class="${empl[7] == '1' ? 'text-success' : 'text-danger'}"
+              ></td>
+
+              <!-- Si el estado es activo, mostramos todos los datos -->
+              <td th:text="${empl[2]}"></td>
+              <td th:text="${empl[3]}"></td>
+              <td th:text="${empl[4]}"></td>
+              <td th:text="${empl[5]}"></td>
+
+              <!-- Acciones solo si el empleado está activo -->
+              <td>
+                <a
+                  th:href="@{/Empleado/DetalleEmpleado(id=${empl[6]})}"
+                  class="btn btn-sm btn-info-custom btn-action"
+                >
+                  <i class="bi bi-info-circle"></i> Info
+                </a>
+                <a
+                  th:href="@{/Empleado/EditarEmpleado/{id}(id=${empl[6]})}"
+                  class="btn btn-sm btn-edit-custom btn-action"
+                >
+                  <i class="bi bi-pencil-square"></i> Editar
+                </a>
+                <a
+                  th:href="@{/BeneficioEmpleado/AsignarPreBeneficio/{idemp}(idemp=${empl[6]})}"
+                  class="btn btn-sm btn-beneficio-custom btn-action"
+                >
+                  <i class="bi bi-gift"></i> Editar Beneficio
+                </a>
+
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>

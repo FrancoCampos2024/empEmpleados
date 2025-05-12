@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Modificar Contrato</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .btn-save {
+            background: #2ceb25;
+            color: #fff;
+            font-weight: 600;
+            border-radius: 2rem;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            font-size: 1.1rem;
+            transition: background 0.2s;
+        }
+
+        .btn-save:hover {
+            background: #00a012;
+            color: #fff;
+        }
+
+        .btn-danger {
+            background: #d80f0f;
+            color: #fff;
+            font-weight: 600;
+            border-radius: 2rem;
+            padding-left: 2rem;
+            padding-right: 2rem;
+            font-size: 1.1rem;
+            transition: background 0.2s;
+        }
+
+        .btn-danger:hover {
+            background: #a00000;
+            color: #fff;
+        }
+    </style>
+</head>
+<body class="bg-light">
+<div class="container mt-5 p-4 bg-white rounded shadow">
+    <h2 class="text-center mb-4"><i class="bi bi-pencil-square"></i> Modificar Contrato</h2>
+
+    <form th:action="@{/Contrato/EditadoContrato/{id}(id=${contrato.idContrato})}" th:object="${contrato}" method="post">
+        <div class="row g-3">
+            <div class="col-md-6">
+                <label class="form-label"><i class="bi bi-person"></i> Empleado</label>
+                <input type="text" class="form-control" th:value="*{contempleado.empNombre+' '+contempleado.empApePaterno+' '+contempleado.empApeMaterno}" readonly>
+                <input type="hidden" th:field="*{contempleado.idEmpleado}" required>
+            </div>
+
+            <!-- Fecha de Inicio -->
+            <div class="col-md-6">
+                <label class="form-label"><i class="bi bi-calendar"></i> Fecha de Inicio</label>
+                <input type="date" class="form-control" th:field="*{contFecIni}" required>
+                <input type="hidden" th:field="*{contFecIni}" required>
+            </div>
+
+            <!-- Área -->
+            <div class="col-md-4">
+                <label class="form-label"><i class="bi bi-diagram-3"></i> Área</label>
+                <select class="form-select" th:field="*{contarea.idArea}" required>
+                    <option value=0>Seleccione</option>
+                    <option th:each="a : ${areas}" th:value="${a.idArea}" th:text="${a.ANombre}"></option>
+                </select>
+            </div>
+
+            <!-- Jornada -->
+            <div class="col-md-4">
+                <label class="form-label"><i class="bi bi-clock"></i> Jornada</label>
+                <select class="form-select" th:field="*{contjornada.idJornada}" required>
+                    <option value=0>Seleccione</option>
+                    <option th:each="j : ${jornadas}" th:value="${j.idJornada}" th:text="${j.jorTipo}"></option>
+                </select>
+            </div>
+
+            <!-- Modalidad -->
+            <div class="col-md-4">
+                <label class="form-label"><i class="bi bi-briefcase-fill"></i> Modalidad</label>
+                <select class="form-select" th:field="*{contmodContrato.idModalidad}" required>
+                    <option value=0>Seleccione</option>
+                    <option th:each="m : ${modalidad}" th:value="${m.idModalidad}" th:text="${m.modNombre}"></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+            <a th:href="@{/Contrato/ListarContratos}" class="btn btn-danger px-4">
+                <i class="bi bi-x-circle"></i> Cancelar
+            </a>
+            <button type="submit" class="btn btn-save px-4">
+                <i class="bi bi-save"></i> Modificar
+            </button>
+        </div>
+    </form>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

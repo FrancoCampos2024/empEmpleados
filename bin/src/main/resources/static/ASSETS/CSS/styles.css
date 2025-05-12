@@ -33,10 +33,6 @@ a {
     text-decoration: none;
 }
 
-button {
-    text-decoration: none;
-}
-
 li {
     list-style: none;
 }
@@ -133,36 +129,6 @@ li {
     margin: 4px 0;
     white-space: nowrap;
 }
-#sidebar .side-menu-btn {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    font-size: 14px;
-    color: var(--light);
-    padding: 12px 16px 12px 0;
-    transition: all .3s ease;
-    border-radius: 10px;
-    margin: 4px 0;
-    background: var(--red); /* Color rojo para el botón */
-    border: none;
-    text-align: left;
-    width: 100%;
-    white-space: nowrap;
-    cursor: pointer;
-}
-
-/* Hover para el botón de Salir */
-#sidebar .side-menu-btn:hover {
-    background: #e60000; /* Un rojo más oscuro para el hover */
-}
-
-/* Si necesitas que el texto sea blanco siempre */
-#sidebar .side-menu-btn,
-#sidebar .side-menu-btn:hover {
-    color: #fff;
-}
-
-
 #sidebar .side-menu > li > a:hover {
     background: var(--grey);
 }

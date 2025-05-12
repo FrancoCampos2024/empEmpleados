@@ -1,0 +1,89 @@
+<main th:fragment="content-page">
+  <div class="container py-5">
+    <h2 class="text-center mb-4">📄 Lista de Contratos</h2>
+
+    <div class="d-flex justify-content-between mb-3">
+      <label for="searchBox"></label
+      ><input
+        type="text"
+        id="searchBox"
+        class="form-control w-50"
+        placeholder="Buscar por nombre..."
+      />
+      <a th:href="@{/Contrato/RealizarContrato}" class="btn btn-add shadow-sm">
+        <i class="bi bi-person-plus-fill"></i> Renovar Contrato
+      </a>
+    </div>
+
+    <div class="card p-4 shadow-sm">
+      <div class="table-responsive">
+        <table class="table table-striped table-hover align-middle">
+          <thead class="table-primary">
+            <tr>
+              <th>Código Empleado</th>
+              <th>Nombre Completo</th>
+              <th>Área</th>
+              <th>Modalidad</th>
+              <th>Jornada</th>
+              <th>Fecha Inicio</th>
+              <th>Fecha Fin</th>
+              <th>Estado</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr th:each="c : ${contratos}">
+              <td th:text="${c.contempleado.empCodigo}"></td>
+              <td
+                th:text="${c.contempleado.empNombre}+' '+${c.contempleado.empApePaterno}+' '+${c.contempleado.empApeMaterno}"
+              ></td>
+              <td th:text="${c.contarea.ANombre}"></td>
+              <td th:text="${c.contmodContrato.modNombre}"></td>
+              <td th:text="${c.contjornada.jorTipo}"></td>
+              <td th:text="${#dates.format(c.contFecIni, 'dd/MM/yyyy')}"></td>
+              <td th:text="${#dates.format(c.contFechfin, 'dd/MM/yyyy')}"></td>
+              <td>
+                <span
+                  th:text="${
+    c.contFechfin == null
+        ? (c.contFecIni.toLocalDate().isAfter(T(java.time.LocalDate).now()) ? 'Por iniciar' : 'Activo')
+        : (T(java.time.LocalDate).now().isAfter(c.contFechfin.toLocalDate()) ? 'Finalizó' : 'Activo')
+}"
+                  th:classappend="${
+    c.contFechfin == null
+        ? (c.contFecIni.toLocalDate().isAfter(T(java.time.LocalDate).now()) ? ' text-primary' : ' text-success')
+        : (T(java.time.LocalDate).now().isAfter(c.contFechfin.toLocalDate()) ? ' text-danger' : ' text-warning')
+}"
+                >
+                </span>
+              </td>
+
+              <td>
+                <a
+                  th:href="@{/Contrato/VerContrato/{id}(id=${c.idContrato})}"
+                  class="btn btn-sm btn-info"
+                >
+                  <i class="bi bi-info-circle"></i> +Info
+                </a>
+                <a
+                  th:href="@{/Contrato/EditarContrato/{id}(id=${c.idContrato})}"
+                  class="btn btn-sm btn-edit"
+                  th:if="${c.contFechfin == null}"
+                >
+                  <i class="bi bi-pencil-square"></i> Editar
+                </a>
+                <a
+                  th:href="@{/Contrato/FinalizarContrato/{id}(id=${c.idContrato})}"
+                  class="btn btn-sm btn-danger"
+                  th:if="${c.contFechfin == null}"
+                >
+                  <i class="bi bi-trash"></i> Finalizar
+                </a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</main>

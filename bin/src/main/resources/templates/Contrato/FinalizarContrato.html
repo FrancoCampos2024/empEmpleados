@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Finalizar Contrato</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        body { background: linear-gradient(135deg, #f8fafc 0%, #e0e7ef 100%); min-height: 100vh; }
+        .section-title { font-weight: 700; color: #1e293b; margin-bottom: 2rem; letter-spacing: 0.5px; }
+        .card { border: none; box-shadow: 0 2px 16px rgba(0,0,0,0.08); border-radius: 1.2rem; background: #fff; max-width: 600px; margin: 0 auto; padding: 2.5rem !important; }
+        .form-label { font-weight: 500; color: #2563eb; }
+        .form-control, .form-select { border-radius: 0.7rem; border: 1px solid #cbd5e1; }
+        .input-group-text { background: #2563eb; color: #fff; border: none; border-radius: 0.7rem 0 0 0.7rem; }
+        .btn-save { background: #2ceb25; color: #fff; font-weight: 600; border-radius: 2rem; padding-left: 2rem; padding-right: 2rem; font-size: 1.1rem; transition: background 0.2s; }
+        .btn-save:hover { background: #00a012; color: #fff; }
+        .btn-danger { background: #d80f0f; color: #fff; font-weight: 600; border-radius: 2rem; padding-left: 2rem; padding-right: 2rem; font-size: 1.1rem; transition: background 0.2s; }
+        .btn-danger:hover { background: #a00000; color: #fff; }
+        @media (max-width: 767px) { .card { padding: 1.5rem !important; max-width: 95%; } }
+    </style>
+</head>
+<body>
+<div class="container py-5">
+    <h2 class="section-title text-center">
+        <i class="bi bi-person-plus-fill"></i> Finalizar Contrato
+    </h2>
+    <div class="card">
+        <form th:action="@{/Contrato/FinalizoContrato/{id}(id=${contrato.idContrato})}" th:object="${contrato}" method="post">
+            <div class="row justify-content-center">
+                <div class="col-12 col-md-10">
+
+                    <div class="mb-3">
+                        <label for="empleado" class="form-label"><i class="bi bi-person-fill"></i> Empleado</label>
+                        <input type="text" class="form-control" id="empleado" th:value="*{contempleado.empNombre+' '+contempleado.empApePaterno+' '+contempleado.empApeMaterno}" readonly>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="area" class="form-label"><i class="bi bi-diagram-3-fill"></i> Área</label>
+                        <input type="text" class="form-control" id="area" th:value="*{contarea.ANombre}" readonly>
+                        <input type="hidden" th:field="*{contarea.idArea}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="modalidad" class="form-label"><i class="bi bi-briefcase-fill"></i> Modalidad</label>
+                        <input type="text" class="form-control" id="modalidad" th:value="*{contmodContrato.modNombre}" readonly>
+                        <input type="hidden" th:field="*{contmodContrato.idModalidad}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="jornada" class="form-label"><i class="bi bi-clock-fill"></i> Jornada</label>
+                        <input type="text" class="form-control" id="jornada" th:value="*{contjornada.jorTipo}" readonly>
+                        <input type="hidden" th:field="*{contjornada.idJornada}">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="fechaInicio" class="form-label"><i class="bi bi-calendar-date-fill"></i> Fecha de Inicio</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-calendar"></i></span>
+                            <input type="date" class="form-control" id="fechaInicio" th:field="*{contFecIni}" readonly>
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="fechafin" class="form-label"><i class="bi bi-calendar-date-fill"></i> Fecha de Fin</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="bi bi-calendar"></i></span>
+                            <input type="date" class="form-control" id="fechafin" th:field="*{contFechfin}" required>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="text-center">
+                <a th:href="@{/Contrato/ListarContratos}" class="btn btn-danger mt-3 shadow-sm">
+                    <i class="bi bi-arrow-left-circle"></i> Cancelar
+                </a>
+                <button type="submit" class="btn btn-save mt-3 shadow">
+                    <i class="bi bi-save2"></i> Aceptar
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Fecha de hoy hacia adelante   -->
+<script>
+    // Obtener la fecha de hoy
+    const hoy = new Date();
+    const yyyy = hoy.getFullYear();
+    const mm = String(hoy.getMonth() + 1).padStart(2, '0'); // Mes actual (0-11)
+    const dd = String(hoy.getDate()).padStart(2, '0');       // Día del mes
+
+    // Formatear la fecha como YYYY-MM-DD
+    const fechaMin = `${yyyy}-${mm}-${dd}`;
+
+    // Establecer la fecha mínima en el input
+    document.getElementById("fechafin").min = fechaMin;
+</script>
+</body>
+</html>
